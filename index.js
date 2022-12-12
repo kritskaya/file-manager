@@ -1,6 +1,7 @@
 import { stdin, stdout, argv, cwd, chdir } from 'process';
 import os from 'os';
-import * as readline from 'readline/promises';
+// import * as readline from 'readline/promises';
+import * as readline from 'readline';
 import { getCommand } from './lib/validateInput.js';
 import { commands } from './commands/commands.js';
 
@@ -15,14 +16,13 @@ stdout.write(`${os.EOL}You are currently in ${currentPath}${os.EOL}`);
 
 const rl = readline.createInterface({ input: stdin, output: stdout });
 
-rl.on('line', (input) => {
+rl.on('line', async (input) => {
   const inputArgs = input.match(/"(.*?)"(?: |$)|[^ ]+/g);
   const [command, ...commandArgs] = inputArgs;
 
   try {
     const exec = getCommand(command, commandArgs);
-    exec();
-    
+    await exec();
   } catch (err) {
     stdout.write(`${err.message}${os.EOL}`);
   }

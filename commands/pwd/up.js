@@ -1,4 +1,4 @@
-import { sep as separator, resolve } from 'path';
+import { sep as separator } from 'path';
 import { chdir, cwd } from 'process';
 
 export const up = () => {
