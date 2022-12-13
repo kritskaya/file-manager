@@ -4,9 +4,9 @@ import os from 'os';
 import { getAbsolutePath } from '../../lib/fs-helper.js';
 
 export const cat = async (args) => {
-  const filePath = getAbsolutePath(args[0]);
-
   try {
+    const filePath = getAbsolutePath(args[0]);
+
     const stream = createReadStream(filePath, { encoding: 'utf-8' });
 
     return new Promise((resolve, reject) => {
@@ -22,7 +22,7 @@ export const cat = async (args) => {
         stdout.write(os.EOL);
       })
       .catch(() => stdout.write(`Operation failed${os.EOL}`));
-  } catch (err) {
+  } catch {
     stdout.write(`Operation failed${os.EOL}`);
   }
 };

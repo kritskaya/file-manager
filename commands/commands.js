@@ -1,3 +1,4 @@
+import { add } from './pwd/add.js';
 import { cat } from './pwd/cat.js';
 import { cd } from './pwd/cd.js';
 import { ls } from './pwd/ls.js';
@@ -18,6 +19,10 @@ export const commands = [
   },
   {
     command: cat,
+    argsCount: 1,
+  },
+  {
+    command: add,
     argsCount: 1,
   },
 ];
