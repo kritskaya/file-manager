@@ -27,12 +27,16 @@ export const ls = async () => {
     }
   });
 
+  let tableData = [];
   for (const item of content) {
-    console.log(
-      item.name,
-      item.isDirectory(),
-      item.isFile(),
-      item.isSymbolicLink()
-    );
+    if (item.isDirectory()) {
+      tableData.push({ name: item.name, type: 'directory' });
+    } else if (item.isFile()) {
+      tableData.push({ name: item.name, type: 'file' });
+    } else if (item.isSymbolicLink()) {
+      tableData.push({ name: item.name, type: 'symbolic link' });
+    }
   }
+
+  console.table(tableData);
 };
