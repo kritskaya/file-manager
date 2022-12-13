@@ -22,7 +22,7 @@ rl.on('line', async (input) => {
 
   try {
     const exec = getCommand(command, commandArgs);
-    await exec();
+    await exec(commandArgs);
   } catch (err) {
     stdout.write(`${err.message}${os.EOL}`);
   }

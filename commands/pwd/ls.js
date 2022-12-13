@@ -8,7 +8,6 @@ export const ls = async () => {
   const content = await readdir(currentPath, { withFileTypes: true });
 
   const n = content.sort((item1, item2) => {
-    console.log('enter');
     try {
       if (
         (item1.isDirectory() && item2.isDirectory()) ||
