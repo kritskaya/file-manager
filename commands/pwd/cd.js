@@ -1,4 +1,3 @@
-import { sep as separator } from 'path';
 import { chdir, stdout } from 'process';
 import os from 'os';
 
