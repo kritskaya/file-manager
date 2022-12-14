@@ -1,4 +1,4 @@
-import { stat } from 'fs/promises';
+import { access, stat } from 'fs/promises';
 import { basename, join } from 'path';
 import { stdout } from 'process';
 import { getAbsolutePath } from '../../lib/fs-helper.js';
@@ -13,6 +13,8 @@ export const cp = async (args) => {
     filePath = getAbsolutePath(args[0]);
 
     const filename = basename(filePath);
+
+    await access(getAbsolutePath(args[1]));
     newFilePath = join(getAbsolutePath(args[1]), filename);
 
     isDirectory = (await stat(filePath)).isDirectory();
@@ -41,6 +43,7 @@ export const cp = async (args) => {
 
       readableStream.on('end', () => {
         writableStream.write(content);
+        writableStream.close();
         resolve(`file is copied${os.EOL}`);
       });
     })
@@ -48,7 +51,6 @@ export const cp = async (args) => {
         stdout.write(content);
       })
       .catch((err) => {
-        stdout.write(err.message);
         stdout.write(`Operation failed${os.EOL}`);
 
         if (err.code === 'EPERM') {
@@ -59,16 +61,16 @@ export const cp = async (args) => {
           stdout.write(`File ${newFilePath} already exists${os.EOL}`);
         }
 
-        if (err.code === 'EPERM') {
-          stdout.write(`Operation not permitted${os.EOL}`);
-        }
-
-        if (err.code === 'ENOENT') {
-          stdout.write(`No such file or directory${os.EOL}`);
+        if (isDirectory) {
+          stdout.write(`Path ${filePath} is a directory not a file${os.EOL}`);
         }
       });
   } catch (err) {
-    console.log(err.message);
     stdout.write(`Operation failed${os.EOL}`);
+
+    if (err.code === 'ENOENT') {
+      const file = err.message.slice(err.message.indexOf("'"));
+      stdout.write(`No such file or directory ${file} ${os.EOL}`);
+    }
   }
 };
