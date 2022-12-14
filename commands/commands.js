@@ -4,6 +4,7 @@ import { cp } from './fs/cp.js';
 import { mv } from './fs/mv.js';
 import { rm } from './fs/rm.js';
 import { rn } from './fs/rn.js';
+import { os } from './os/os.js';
 import { cd } from './pwd/cd.js';
 import { ls } from './pwd/ls.js';
 import { up } from './pwd/up.js';
@@ -44,5 +45,9 @@ export const commands = [
   {
     command: mv,
     argsCount: 2,
+  },
+  {
+    command: os,
+    argsCount: 1,
   },
 ];
