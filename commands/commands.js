@@ -1,6 +1,7 @@
 import { add } from './fs/add.js';
 import { cat } from './fs/cat.js';
 import { cp } from './fs/cp.js';
+import { mv } from './fs/mv.js';
 import { rm } from './fs/rm.js';
 import { rn } from './fs/rn.js';
 import { cd } from './pwd/cd.js';
@@ -38,6 +39,10 @@ export const commands = [
   },
   {
     command: cp,
+    argsCount: 2,
+  },
+  {
+    command: mv,
     argsCount: 2,
   },
 ];

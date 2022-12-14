@@ -1,11 +1,11 @@
-import { access, stat } from 'fs/promises';
+import { access, rm, stat } from 'fs/promises';
 import { basename, join } from 'path';
 import { stdout } from 'process';
 import { getAbsolutePath } from '../../lib/fs-helper.js';
 import os from 'os';
 import { createReadStream, createWriteStream } from 'fs';
 
-export const cp = async (args) => {
+export const mv = async (args) => {
   let filePath, newFilePath;
   let isDirectory;
 
@@ -45,11 +45,12 @@ export const cp = async (args) => {
         writableStream.write(content);
         writableStream.close();
         readableStream.close();
-        resolve(`file ${filePath} is copied${os.EOL}`);
+        resolve(`file ${filePath} is moved${os.EOL}`);
       });
     })
-      .then((content) => {
+      .then(async (content) => {
         stdout.write(content);
+        await rm(filePath);
       })
       .catch((err) => {
         stdout.write(`Operation failed${os.EOL}`);
