@@ -10,6 +10,7 @@ import { cd } from './pwd/cd.js';
 import { ls } from './pwd/ls.js';
 import { up } from './pwd/up.js';
 import { compress } from './zip/compress.js';
+import { decompress } from './zip/decompress.js';
 
 export const commands = [
   {
@@ -58,6 +59,10 @@ export const commands = [
   },
   {
     command: compress,
+    argsCount: 2,
+  },
+  {
+    command: decompress,
     argsCount: 2,
   },
 ];
