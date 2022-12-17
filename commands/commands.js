@@ -9,6 +9,7 @@ import { os } from './os/os.js';
 import { cd } from './pwd/cd.js';
 import { ls } from './pwd/ls.js';
 import { up } from './pwd/up.js';
+import { compress } from './zip/compress.js';
 
 export const commands = [
   {
@@ -54,5 +55,9 @@ export const commands = [
   {
     command: hash,
     argsCount: 1,
+  },
+  {
+    command: compress,
+    argsCount: 2,
   },
 ];

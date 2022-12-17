@@ -36,6 +36,6 @@ rl.on('line', async (input) => {
 
 rl.on('close', () => {
   stdout.write(
-    `Thank you for using File Manager, ${username}, goodbye!${os.EOL}`
+    `${os.EOL}Thank you for using File Manager, ${username}, goodbye!${os.EOL}`
   );
 });
