@@ -1,6 +1,7 @@
 import { add } from './fs/add.js';
 import { cat } from './fs/cat.js';
 import { cp } from './fs/cp.js';
+import { hash } from './fs/hash.js';
 import { mv } from './fs/mv.js';
 import { rm } from './fs/rm.js';
 import { rn } from './fs/rn.js';
@@ -48,6 +49,10 @@ export const commands = [
   },
   {
     command: os,
+    argsCount: 1,
+  },
+  {
+    command: hash,
     argsCount: 1,
   },
 ];
