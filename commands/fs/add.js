@@ -9,9 +9,9 @@ export const add = async (args) => {
 
   try {
     filePath = join(currentPath, args[0]);
-    
+
     await appendFile(filePath, '', { flag: 'ax' });
-    stdout.write(`New empty file created${os.EOL}`);
+    stdout.write(`New empty file is created${os.EOL}`);
   } catch (err) {
     stdout.write(`Operation failed${os.EOL}`);
 
