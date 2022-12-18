@@ -14,7 +14,7 @@ export const os = (args) => {
       stdout.write(`information about each logical CPU core:${OS.EOL}`);
       cpus.forEach((cpu) => {
         stdout.write(`model: ${cpu.model}${OS.EOL}`);
-        stdout.write(`clock rate: ${Math.round(cpu.speed / 100) / 10}GHz${OS.EOL}`);
+        stdout.write(`clock rate: ${cpu.speed / 1000}GHz${OS.EOL}`);
       });
       break;
     case '--username':
